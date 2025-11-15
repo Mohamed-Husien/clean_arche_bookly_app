@@ -31,6 +31,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
             'volumes?Sorting=newest&Filtering=free&q=subject:programming');
 
     List<BookEntity> books = getBooksList(data);
+    saveBooksDataInHive(books: books, boxName: kNewestBooks);
     return books;
   }
 
