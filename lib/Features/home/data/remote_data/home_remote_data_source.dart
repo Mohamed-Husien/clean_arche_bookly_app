@@ -21,9 +21,13 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+  Future<List<BookEntity>> fetchNewestBooks() async {
+    var data = await apiService.get(
+        endPoint:
+            'volumes?Sorting=newest&Filtering=free&q=subject:programming');
+
+    List<BookEntity> books = getBooksList(data);
+    return books;
   }
 
 //------------------------------------------------------------------------------
