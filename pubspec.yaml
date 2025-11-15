@@ -31,7 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  font_awesome_flutter: null
+
   go_router:
   google_fonts: null
 
