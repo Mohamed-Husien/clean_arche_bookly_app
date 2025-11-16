@@ -1,4 +1,5 @@
 import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity.dart';
+import 'package:clean_arche_bookly_app/core/utils/functions/get_clean_image_url.dart';
 
 import 'access_info.dart';
 import 'sale_info.dart';
@@ -23,7 +24,7 @@ class BookModel extends BookEntity {
     this.accessInfo,
   }) : super(
             bookId: id!,
-            image: volumeInfo?.imageLinks?.thumbnail ?? '',
+            image: getCleanImageUrl(volumeInfo?.imageLinks?.thumbnail),
             authorName: volumeInfo?.authors?.first ?? 'No Name ',
             price: 0.0,
             rating: 4.9,

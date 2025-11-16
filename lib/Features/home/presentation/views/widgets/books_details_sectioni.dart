@@ -18,7 +18,10 @@ class BookDetailsSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: width * .2,
           ),
-          child: const CustomBookImage(),
+          child: const CustomBookImage(
+            image:
+                'https://basecamplive.com/wp-content/uploads/2023/02/books.jpeg',
+          ),
         ),
         const SizedBox(
           height: 43,
