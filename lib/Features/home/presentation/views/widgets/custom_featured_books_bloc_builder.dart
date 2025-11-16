@@ -19,7 +19,7 @@ class CustomFeaturedBooksBlocBuilder extends StatelessWidget {
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const CustomFeaturedBooksLoadingWidget(height: 3);
+          return const CustomFeaturedBooksLoadingWidget(height: .3);
         }
       },
     );

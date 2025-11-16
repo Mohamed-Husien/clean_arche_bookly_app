@@ -1,5 +1,5 @@
-import 'package:clean_arche_bookly_app/Features/home/data/repo/home_repo_impl.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity.dart';
+import 'package:clean_arche_bookly_app/Features/home/domain/repo/home_repo.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:clean_arche_bookly_app/constants.dart';
@@ -14,6 +14,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
+  setupServiceLocator();
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
@@ -31,7 +32,7 @@ class Bookly extends StatelessWidget {
           BlocProvider(
             create: (context) => FeaturedBooksCubit(
               FetchFeaturedBooksUseCase(
-                getIt.get<HomeRepoImpl>(),
+                getIt.get<HomeRepo>(),
               ),
             )..fetchFeaturedBooks(),
           ),
