@@ -1,7 +1,9 @@
 import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/repo/home_repo.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/use_cases/fetch_featured_books_use_case.dart';
+import 'package:clean_arche_bookly_app/Features/home/domain/use_cases/fetch_newest_books_use_case.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:clean_arche_bookly_app/Features/home/presentation/manger/newest_books_cubit/newest_books_cubit.dart';
 import 'package:clean_arche_bookly_app/constants.dart';
 import 'package:clean_arche_bookly_app/core/utils/app_router.dart';
 import 'package:clean_arche_bookly_app/core/utils/service_locator.dart';
@@ -36,6 +38,12 @@ class Bookly extends StatelessWidget {
               ),
             )..fetchFeaturedBooks(),
           ),
+          BlocProvider(
+            create: (context) => NewestBooksCubit(FetchNewestBooksUseCase(
+              getIt.get<HomeRepo>(),
+            ))
+              ..fetchNewestBooks(),
+          )
         ],
         child: MaterialApp.router(
           routerConfig: AppRouter.router,
