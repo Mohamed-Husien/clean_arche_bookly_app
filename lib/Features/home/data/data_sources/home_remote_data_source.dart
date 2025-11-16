@@ -5,7 +5,7 @@ import 'package:clean_arche_bookly_app/core/utils/api_service.dart';
 import 'package:clean_arche_bookly_app/core/utils/functions/save_books_data_in_hive.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
   Future<List<BookEntity>> fetchNewestBooks();
 }
 
@@ -14,9 +14,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   HomeRemoteDataSourceImpl({required this.apiService});
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
-        endPoint: 'volumes?Filtering=free&q=subject:programming');
+        endPoint:
+            'volumes?Filtering=free&q=subject:programming&startIndex=${pageNumber * 10}');
 
     List<BookEntity> books = getBooksList(data);
 
