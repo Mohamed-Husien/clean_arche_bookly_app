@@ -6,7 +6,7 @@ import 'package:clean_arche_bookly_app/core/utils/functions/save_books_data_in_h
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
-  Future<List<BookEntity>> fetchNewestBooks();
+  Future<List<BookEntity>> fetchNewestBooks({int pageNumber = 0});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -17,7 +17,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
         endPoint:
-            'volumes?Filtering=free&q=subject:programming&startIndex=${pageNumber * 10}');
+            'volumes?q=subject:programming&startIndex=${pageNumber * 10}');
 
     List<BookEntity> books = getBooksList(data);
 
@@ -26,10 +26,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() async {
+  Future<List<BookEntity>> fetchNewestBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
         endPoint:
-            'volumes?Sorting=newest&Filtering=free&q=subject:programming');
+            'volumes?Sorting=newest&q=subject:programming&startIndex=${pageNumber * 10}');
 
     List<BookEntity> books = getBooksList(data);
     saveBooksDataInHive(books: books, boxName: kNewestBooks);
