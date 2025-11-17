@@ -77,7 +77,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
-            child: CustomBestSellerListViewBlocBuilder(),
+            child: CustomBestSellerListViewBlocConsumer(),
           ),
         ),
         SliverToBoxAdapter(

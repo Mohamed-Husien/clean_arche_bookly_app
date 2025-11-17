@@ -7,18 +7,18 @@ import 'package:clean_arche_bookly_app/core/widgets/custom_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomBestSellerListViewBlocBuilder extends StatefulWidget {
-  const CustomBestSellerListViewBlocBuilder({
+class CustomBestSellerListViewBlocConsumer extends StatefulWidget {
+  const CustomBestSellerListViewBlocConsumer({
     super.key,
   });
 
   @override
-  State<CustomBestSellerListViewBlocBuilder> createState() =>
-      _CustomBestSellerListViewBlocBuilderState();
+  State<CustomBestSellerListViewBlocConsumer> createState() =>
+      _CustomBestSellerListViewBlocConsumerState();
 }
 
-class _CustomBestSellerListViewBlocBuilderState
-    extends State<CustomBestSellerListViewBlocBuilder> {
+class _CustomBestSellerListViewBlocConsumerState
+    extends State<CustomBestSellerListViewBlocConsumer> {
   List<BookEntity> books = [];
   @override
   Widget build(BuildContext context) {
