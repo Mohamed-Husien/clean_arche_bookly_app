@@ -15,6 +15,12 @@ final class FeaturedBooksFailure extends FeaturedBooksState {
   FeaturedBooksFailure({required this.errMessage});
 }
 
+final class FeaturedPaginationBooksFailure extends FeaturedBooksState {
+  final String errMessage;
+
+  FeaturedPaginationBooksFailure({required this.errMessage});
+}
+
 final class FeaturedBooksSuccess extends FeaturedBooksState {
   final List<BookEntity> booksList;
 

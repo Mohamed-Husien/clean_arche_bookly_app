@@ -2,22 +2,23 @@ import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity
 import 'package:clean_arche_bookly_app/Features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/views/widgets/custom_featured_box_loading_widget.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/views/widgets/featured_list_view.dart';
+import 'package:clean_arche_bookly_app/core/utils/functions/custom_snack_bar.dart';
 import 'package:clean_arche_bookly_app/core/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomFeaturedBooksBlocBuilder extends StatefulWidget {
-  const CustomFeaturedBooksBlocBuilder({
+class CustomFeaturedBooksBlocConsumer extends StatefulWidget {
+  const CustomFeaturedBooksBlocConsumer({
     super.key,
   });
 
   @override
-  State<CustomFeaturedBooksBlocBuilder> createState() =>
-      _CustomFeaturedBooksBlocBuilderState();
+  State<CustomFeaturedBooksBlocConsumer> createState() =>
+      _CustomFeaturedBooksBlocConsumerState();
 }
 
-class _CustomFeaturedBooksBlocBuilderState
-    extends State<CustomFeaturedBooksBlocBuilder> {
+class _CustomFeaturedBooksBlocConsumerState
+    extends State<CustomFeaturedBooksBlocConsumer> {
   List<BookEntity> books = [];
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,14 @@ class _CustomFeaturedBooksBlocBuilderState
         if (state is FeaturedBooksSuccess) {
           books.addAll(state.booksList);
         }
+        if (state is FeaturedPaginationBooksFailure) {
+          customSnackBar(context, state.errMessage);
+        }
       },
       builder: (context, state) {
         if (state is FeaturedBooksSuccess ||
-            state is FeaturedPaginationBooksLoading) {
+            state is FeaturedPaginationBooksLoading ||
+            state is FeaturedPaginationBooksFailure) {
           return FeaturedBooksListView(
             books: books,
           );
