@@ -30,7 +30,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     _scrollController.addListener(_onScroll);
   }
 
-  void _onScroll() {
+  void _onScroll() async {
     if (!_scrollController.hasClients) return;
 
     final maxScroll = _scrollController.position.maxScrollExtent;
@@ -40,7 +40,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     if (currentScroll >= threshold) {
       if (!isLoading) {
         isLoading = true;
-        BlocProvider.of<FeaturedBooksCubit>(context)
+        await BlocProvider.of<FeaturedBooksCubit>(context)
             .fetchFeaturedBooks(pageNumber: nextPage++);
         isLoading = false;
       }
