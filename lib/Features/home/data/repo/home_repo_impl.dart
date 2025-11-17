@@ -43,7 +43,8 @@ class HomeRepoImpl extends HomeRepo {
         return right(books);
       }
 
-      books = await homeRemoteDataSource.fetchNewestBooks();
+      books =
+          await homeRemoteDataSource.fetchNewestBooks(pageNumber: pageNumber);
       return right(books);
     } catch (e) {
       if (e is DioException) {

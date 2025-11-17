@@ -30,7 +30,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    final threshold = maxScroll * 0.9;
+    final threshold = maxScroll * 0.7;
 
     if (currentScroll >= threshold) {
       if (!isLoading) {
