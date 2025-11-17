@@ -22,6 +22,7 @@ class FeaturedBooksListView extends StatefulWidget {
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late ScrollController _scrollController;
   int nextPage = 1;
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -37,8 +38,12 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     final threshold = maxScroll * 0.7;
 
     if (currentScroll >= threshold) {
-      BlocProvider.of<FeaturedBooksCubit>(context)
-          .fetchFeaturedBooks(pageNumber: nextPage++);
+      if (!isLoading) {
+        isLoading = true;
+        BlocProvider.of<FeaturedBooksCubit>(context)
+            .fetchFeaturedBooks(pageNumber: nextPage++);
+        isLoading = false;
+      }
     }
   }
 
