@@ -7,6 +7,8 @@ import 'package:clean_arche_bookly_app/core/utils/functions/save_books_data_in_h
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
   Future<List<BookEntity>> fetchNewestBooks({int pageNumber = 0});
+  Future<List<BookEntity>> fetchSimilarBooks(
+      {int pageNumber = 0, String category});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -36,6 +38,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     return books;
   }
 
+  @override
   Future<List<BookEntity>> fetchSimilarBooks(
       {int pageNumber = 0, String category = ""}) async {
     var data = await apiService.get(
