@@ -36,6 +36,15 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     return books;
   }
 
+  Future<List<BookEntity>> fetchSimilarBooks(
+      {int pageNumber = 0, String category = ""}) async {
+    var data = await apiService.get(
+        endPoint: 'volumes?q=subject:$category&startIndex=${pageNumber * 10}');
+    List<BookEntity> books = getBooksList(data);
+    saveBooksDataInHive(books: books, boxName: kSimilarBooks);
+    return books;
+  }
+
 //------------------------------------------------------------------------------
   List<BookEntity> getBooksList(Map<String, dynamic> data) {
     List<BookEntity> books = [];
