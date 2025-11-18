@@ -1,5 +1,6 @@
 import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/manger/similar_books_cubit/similar_books_cubit.dart';
+import 'package:clean_arche_bookly_app/Features/home/presentation/views/widgets/custom_featured_box_loading_widget.dart';
 import 'package:clean_arche_bookly_app/Features/home/presentation/views/widgets/similar_books_list_view.dart';
 import 'package:clean_arche_bookly_app/core/utils/functions/custom_snack_bar.dart';
 import 'package:clean_arche_bookly_app/core/widgets/custom_error_widget.dart';
@@ -40,7 +41,7 @@ class _SimilarBooksListViewBlocConsumerState
         } else if (state is SimilarBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const CircularProgressIndicator();
+          return const CustomFeaturedBooksLoadingWidget(height: .15);
         }
       },
     );
