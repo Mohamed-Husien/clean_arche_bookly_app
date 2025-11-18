@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arche_bookly_app/Features/home/domain/use_cases/fetch_similar_books_use_case.dart';
@@ -14,7 +12,6 @@ class SimilarBooksCubit extends Cubit<SimilarBooksState> {
 
   Future<void> fetchSimilarBooks(
       {int pageNumber = 0, String category = ""}) async {
-    log(category);
     if (pageNumber == 0) {
       emit(SimilarBooksLoading());
     } else {

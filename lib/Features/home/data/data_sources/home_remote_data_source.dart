@@ -45,6 +45,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         endPoint: 'volumes?q=subject:$category&startIndex=${pageNumber * 10}');
     List<BookEntity> books = getBooksList(data);
     saveBooksDataInHive(books: books, boxName: kSimilarBooks);
+
     return books;
   }
 
